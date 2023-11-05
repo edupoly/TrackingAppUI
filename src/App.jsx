@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
 import Login from "./features/user/Login";
+import Header from "./features/dashboard/Header";
 
 
 function App() {
   return (
     <div>
-      <h1>Tricketing App...</h1>
-
+      <Header></Header>
       <Outlet></Outlet>
     </div>
   );
