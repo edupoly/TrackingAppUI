@@ -2,9 +2,12 @@ import React from 'react'
 import { useFormik } from 'formik'
 import { useNavigate } from 'react-router-dom'
 import { useAuthenticateQuery, useLazyAuthenticateQuery } from '../../services/userapi'
+import { setLoggedIn } from './loginSlice'
+import { useDispatch } from 'react-redux'
 function Login() {
     var [loginFn]=useLazyAuthenticateQuery()
     var navigate = useNavigate();
+    var dispatch = useDispatch()
     var loginForm = useFormik({
         initialValues:{
             username:"",
@@ -18,6 +21,7 @@ function Login() {
                     alert("Check your details")
                 }
                 else{
+                    dispatch(setLoggedIn(true))
                     navigate("/dashboard")
                 }
             })

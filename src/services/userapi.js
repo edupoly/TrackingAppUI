@@ -12,9 +12,19 @@ export const userApi = createApi({
         return `?username=${user.username}&password=${user.password}`
       } ,
     }),
+    getAllEmployees:builder.query({
+      query:()=>{
+        return `?role=employee`
+      }
+    })
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useLazyAuthenticateQuery,useAuthenticateQuery } = userApi
+export const { 
+  useLazyAuthenticateQuery,
+  useAuthenticateQuery,
+  useGetAllEmployeesQuery,
+  useLazyGetAllEmployeesQuery
+} = userApi

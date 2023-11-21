@@ -1,8 +1,14 @@
-import React from 'react'
-import { useListTicketsQuery } from '../../services/ticketapi'
+import React, { useEffect } from 'react'
+import { useLazyListTicketsQuery, useListTicketsByCustomerIdQuery, useListTicketsQuery } from '../../services/ticketapi'
 
 function ListTickets() {
-    var {isLoading,data}=useListTicketsQuery()
+    var cid = JSON.parse(window.localStorage.getItem('user'))[0].id
+    var {isLoading,data}=useListTicketsByCustomerIdQuery(cid)
+    var [getListTicketsFn] = useLazyListTicketsQuery()
+
+    useEffect(()=>{
+        getListTicketsFn();
+    },[]);
   return (
     <div>
         <h1>ListTickets</h1>

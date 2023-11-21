@@ -14,14 +14,35 @@ export const ticketApi = createApi({
         }
       } ,
     }),
+    updateTicket: builder.mutation({
+      query: (ticket) =>{
+        return {
+            url:`/${ticket.id}`,
+            method:"PUT",
+            body:ticket
+        }
+      } ,
+    }),
     listTickets:builder.query({
         query:()=>{
             return `/`
         }
+    }),
+    listTicketsByCustomerId:builder.query({
+      query:(cid)=>{
+        return `?customerId=${cid}`
+      }
     })
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useAddTicketMutation,useListTicketsQuery } = ticketApi;
+export const { 
+  useAddTicketMutation,
+  useListTicketsQuery,
+  useLazyListTicketsQuery,
+  useListTicketsByCustomerIdQuery,
+  useLazyListTicketsByCustomerIdQuery,
+  useUpdateTicketMutation 
+} = ticketApi;
